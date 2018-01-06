@@ -12,14 +12,27 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let docPath = path[0]
+        
+        print(docPath)
+        
+        path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
+        let catchPath = path[0]
+        print(catchPath)
+        
+        path = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
+        let applicationSupportPath = path[0]
+        print(applicationSupportPath)
+        
+        do {
+            try  FileManager.default.createDirectory(atPath: applicationSupportPath, withIntermediateDirectories: true, attributes: nil)
+        }
+        catch let error {
+            print("폴더 생성 실패 \(error.localizedDescription)")
+        }
+       
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
